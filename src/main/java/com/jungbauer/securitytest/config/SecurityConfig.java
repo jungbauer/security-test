@@ -12,7 +12,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        String[] allowedPaths = { "/", "/login*", "/logout*", "/error*" };
+        String[] allowedPaths = { "/", "/login*", "/logout*", "/error*", "/rest/open" };
 
         http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
