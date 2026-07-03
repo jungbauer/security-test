@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -15,6 +16,7 @@ public class SecurityConfig {
         String[] allowedPaths = { "/", "/login*", "/logout*", "/error*", "/rest/open" };
 
         http.csrf(csrf -> csrf.disable())
+            .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(allowedPaths).permitAll()  // Whitelist signup endpoint
                 .anyRequest().authenticated()  // All other endpoints require authentication
