@@ -14,3 +14,5 @@ Repo to explore different security features and how they interact.
 Articles that inspired and informed this exploration.
 
 [Project structure](https://medium.com/@anandjeyaseelan10/spring-boot-project-structure-explained-best-practices-c2ba46ea57eb) - This seems to be the article Gemini pilfered some of its summary from. I'm going to use a Package-by-Layer approach since this shouldn't be super big.
+
+[Custom error page](https://www.baeldung.com/spring-boot-custom-error-page) - Don't want to dump the error log to the user.
