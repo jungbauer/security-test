@@ -10,6 +10,9 @@ Repo to explore different security features and how they interact.
 6. Pages and endpoints governed by basic JWT security
 7. Endpoint governed by JWT that isn't tracked by the backend
 
+# Defined users
+usr: `test@test.com` pwd: `test` 
+
 # Notes
 The H2 database falls over if you have a User entity. Not ideal. Have called my user TestUser as a workaround in this project.
 
