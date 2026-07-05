@@ -16,6 +16,9 @@ usr: `test@test.com` pwd: `test`
 # Notes
 The H2 database falls over if you have a User entity. Not ideal. Have called my user TestUser as a workaround in this project.
 
+# Todo topics
+Security roles with defined privileges and a defined role hierarchy. [Starting point article.](https://www.baeldung.com/role-and-privilege-for-spring-security-registration)
+
 # Inspiration
 Articles that inspired and informed this exploration.
 
