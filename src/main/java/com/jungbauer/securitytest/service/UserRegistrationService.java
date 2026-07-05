@@ -2,22 +2,29 @@ package com.jungbauer.securitytest.service;
 
 import com.jungbauer.securitytest.exception.UserAlreadyExistsException;
 import com.jungbauer.securitytest.model.dto.UserRegDto;
+import com.jungbauer.securitytest.model.entity.Role;
 import com.jungbauer.securitytest.model.entity.TestUser;
+import com.jungbauer.securitytest.model.enums.RoleEnum;
+import com.jungbauer.securitytest.repository.RoleRepository;
 import com.jungbauer.securitytest.repository.TestUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-//import java.util.Set;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserRegistrationService {
 
     private final TestUserRepository testUserRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
-    public UserRegistrationService(TestUserRepository testUserRepository, PasswordEncoder passwordEncoder) {
+    public UserRegistrationService(TestUserRepository testUserRepository, PasswordEncoder passwordEncoder,
+                                   RoleRepository roleRepository) {
         this.testUserRepository = testUserRepository;
         this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
     }
 
     public TestUser registerNewUserAccount(final UserRegDto userDto) throws UserAlreadyExistsException {
@@ -31,7 +38,11 @@ public class UserRegistrationService {
         user.setLastName(userDto.getLastName());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-//        user.setRoles(Set.of(roleRepository.findByName(UserRoles.USER.getText())));
+
+        Optional<Role> optionalRole = roleRepository.findByName(RoleEnum.USER);
+        optionalRole.ifPresent(role -> {
+            user.setRoles(Set.of(role));
+        });
 
         return testUserRepository.save(user);
     }

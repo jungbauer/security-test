@@ -27,3 +27,5 @@ Articles that inspired and informed this exploration.
 [Custom error page](https://www.baeldung.com/spring-boot-custom-error-page) - Don't want to dump the error log to the user.
 
 [H2 db console](https://www.baeldung.com/spring-boot-h2-console-error) - Useful for H2. Whole security filter not necessary, probably because of dependency spring-boot-h2console.
+
+[Spring role based access control, RBAC](https://medium.com/@chanuthmaduka1986/secure-spring-boot-application-with-easy-role-based-access-control-8c2355933902) - Useful tut for implementing Roles.
