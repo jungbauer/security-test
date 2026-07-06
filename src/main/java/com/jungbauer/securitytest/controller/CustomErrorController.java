@@ -17,6 +17,7 @@ public class CustomErrorController  implements ErrorController {
 
         if (status != null) {
             int statusCode = Integer.parseInt(status.toString());
+            model.addAttribute("statusCode", statusCode);
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
                 model.addAttribute("statusCode", HttpStatus.NOT_FOUND.value());
                 model.addAttribute("message", "Page not found");
