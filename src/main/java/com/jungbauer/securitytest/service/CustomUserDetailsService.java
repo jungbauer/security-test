@@ -48,7 +48,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     private List<GrantedAuthority> getAuthorities (Collection<Role> roles) {
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getName().name()));
+            // The ROLE_ prefix is important. I don't fully understand where it's used but if
+            // missing method based security functions like hasRole() seem to break.
+            authorities.add(new SimpleGrantedAuthority(role.getName().getText()));
         }
         return authorities;
     }
