@@ -6,9 +6,9 @@ Repo to explore different security features and how they interact.
 2. ~~Freely open rest endpoints~~
 3. ~~Pages governed by User login and different roles~~
 4. Endpoints governed by User login and different roles
-5. Pages and endpoints governed by Custom UserEmail security filter
-6. Pages and endpoints governed by basic JWT security
-7. Endpoint governed by JWT that isn't tracked by the backend
+5. Pages and endpoints governed by basic JWT security
+6. Endpoint governed by JWT that isn't tracked by the backend
+7. Pages and endpoints governed by Custom UserEmail security filter
 
 # Defined users
 usr: `test@test.com` pwd: `test` 
