@@ -48,7 +48,8 @@ public class UserRegistrationService {
     }
 
     private boolean emailExists(String email) {
-        return testUserRepository.findByEmail(email) != null;
+        Optional<TestUser> optionalTestUser = testUserRepository.findByEmail(email);
+        return optionalTestUser.isPresent();
     }
 
 }

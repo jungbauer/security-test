@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -27,8 +28,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(@NonNull String email) throws UsernameNotFoundException {
 
-        TestUser user = testUserRepository.findByEmail(email);
-        if (user == null) {
+        Optional<TestUser> optionalTestUser = testUserRepository.findByEmail(email);
+        if (optionalTestUser.isEmpty()) {
             throw new UsernameNotFoundException("No user found with email: " + email);
         }
 
@@ -37,10 +38,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
-        List<GrantedAuthority> authorities = getAuthorities(user.getRoles());
+        List<GrantedAuthority> authorities = getAuthorities(optionalTestUser.get().getRoles());
 
         return new org.springframework.security.core.userdetails.User(
-                user.getEmail(), user.getPassword(), enabled, accountNonExpired,
+                optionalTestUser.get().getEmail(), optionalTestUser.get().getPassword(), enabled, accountNonExpired,
                 credentialsNonExpired, accountNonLocked, authorities);
     }
 
