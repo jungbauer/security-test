@@ -11,7 +11,9 @@ Repo to explore different security features and how they interact.
 7. Pages and endpoints governed by Custom UserEmail security filter
 
 # Defined users
-usr: `test@test.com` pwd: `test` 
+usr: `test@test.com` pwd: `test`
+usr: `admin@admin.com` pwd: `admin`
+usr: `owner@owner.com` pwd: `owner`
 
 # Notes
 The H2 database falls over if you have a User entity. Not ideal. Have called my user TestUser as a workaround in this project.
