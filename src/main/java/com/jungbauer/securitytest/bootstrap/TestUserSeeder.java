@@ -46,6 +46,7 @@ public class TestUserSeeder implements ApplicationListener<ContextRefreshedEvent
         testUser.setFirstName("Test");
         testUser.setLastName("Test");
         testUser.setEmail("test@test.com");
+        testUser.setUsername(testUser.getFirstName().toLowerCase() + "." + testUser.getLastName().toLowerCase());
         testUser.setPassword(passwordEncoder.encode("test"));
 
         optionalRole.ifPresent(role -> {
@@ -67,6 +68,7 @@ public class TestUserSeeder implements ApplicationListener<ContextRefreshedEvent
 
         testUser.setFirstName("Admin");
         testUser.setLastName("Admin");
+        testUser.setUsername(testUser.getFirstName().toLowerCase() + "." + testUser.getLastName().toLowerCase());
         testUser.setEmail("admin@admin.com");
         testUser.setPassword(passwordEncoder.encode("admin"));
 
@@ -89,6 +91,7 @@ public class TestUserSeeder implements ApplicationListener<ContextRefreshedEvent
 
         testUser.setFirstName("Owner");
         testUser.setLastName("Owner");
+        testUser.setUsername(testUser.getFirstName().toLowerCase() + "." + testUser.getLastName().toLowerCase());
         testUser.setEmail("owner@owner.com");
         testUser.setPassword(passwordEncoder.encode("owner"));
 

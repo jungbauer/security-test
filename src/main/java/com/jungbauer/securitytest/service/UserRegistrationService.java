@@ -31,11 +31,15 @@ public class UserRegistrationService {
         if (emailExists(userDto.getEmail())) {
             throw new UserAlreadyExistsException("User already exists");
         }
+        if (usernameExists(userDto.getFirstName().toLowerCase() + "." + userDto.getLastName().toLowerCase())) {
+            throw new UserAlreadyExistsException("User already exists");
+        }
 
         final TestUser user = new TestUser();
 
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
+        user.setUsername(user.getFirstName().toLowerCase() + "." + user.getLastName().toLowerCase());
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
@@ -49,6 +53,11 @@ public class UserRegistrationService {
 
     private boolean emailExists(String email) {
         Optional<TestUser> optionalTestUser = testUserRepository.findByEmail(email);
+        return optionalTestUser.isPresent();
+    }
+
+    private boolean usernameExists(String username) {
+        Optional<TestUser> optionalTestUser = testUserRepository.findByUsername(username);
         return optionalTestUser.isPresent();
     }
 
